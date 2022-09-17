@@ -1,6 +1,14 @@
 html, body{
 	height: 100%;
 	padding: 0;
+	margin: 0;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 300;
+}
+main{
+	a:visited{
+		color: lightcoral;
+	}
 }
 .container{
 	min-width: 300px;
@@ -13,20 +21,104 @@ html, body{
 	flex-direction: column;
 	border-radius: 10px;
 	border: 1px solid black;
-	margin-top: 200px;
-	margin-left: 300px;
+	//margin-top: 200px;
+	//margin-left: 300px;
 	width: fit-content;
 	padding: 20px;
 	color: white;
+	perspective: 800px;
+	section{
+		margin: 10px;
+		border: 5px inset greenyellow;
+		border-radius: 10px;
+		transition: transform 0.5s ease;
+		transform-style: preserve-3d;
+		transform-origin: left;
+		perspective: 1800px;
+		background-color: rgba(0, 139, 139, 0.229);
+		&:active{
+			transform: rotateY(30deg);
+			& > div{
+				transform: translateZ(-100px);
+			}
+		}
+		& > div{
+			height: 100%;
+			transform-style: preserve-3d;
+			transform: translateZ(-1px);
+			transform-origin: left;
+			transition: transform 0.5s ease;
+			background-color: rgba(0, 139, 139, 0.229) ;
+		}
+	}
 }
 header{
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
+	padding-left: 20px;
+	padding-right: 20px;
+	box-sizing: border-box;
 	box-shadow: 0px 0px 10px 2px black;
 	display: flex;
+	align-items: center;
+	background-color: aliceblue;
 	#logo{
 		margin: 10px;
+	}
+	nav{
+		margin-left: 20px;
+		ul{
+			display: flex;
+			list-style: none;
+			li{
+				margin: 10px;
+				font-family: 'Oswald', sans-serif;
+				font-weight: 700;
+				font-size: 20px;
+				a{
+					text-decoration: none;
+					color: white;
+				}
+			}
+		}
+	}
+}
+main{
+	width: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 100px;
+	margin-bottom: 20px;
+}
+footer{
+	width: 100%;
+	box-shadow: 0px 0px 10px 2px black;
+	padding: 10px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-wrap: nowrap;
+	background-color: gray;
+	address{
+		a{
+			display: block;
+		}
+	}
+}
+#googleSide{
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin-top: 200px;
+	margin-right: 10px;
+	img{
+		transform-origin: left;
+		transition: transform 0.3s ease;
+	}
+	img:hover{
+		transform: rotate(90deg);
 	}
 }

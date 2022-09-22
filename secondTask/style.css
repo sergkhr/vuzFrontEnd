@@ -49,8 +49,12 @@ main a:visited {
   transition: transform 0.5s ease;
   background-color: rgba(0, 139, 139, 0.229);
 }
+.container section + p {
+  background: transparent;
+}
 header {
   position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
   width: 100%;

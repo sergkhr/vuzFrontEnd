@@ -5,6 +5,7 @@ body {
   margin: 0;
   font-family: 'Oswald', sans-serif;
   font-weight: 300;
+  box-sizing: border-box;
 }
 main a:visited {
   color: lightcoral;
@@ -125,11 +126,17 @@ main {
   left: 0;
   margin-top: 100px;
 }
+.adWrap {
+  margin: 10px;
+}
+.adWrap section:last-child {
+  margin-right: 0;
+}
 .inContentAd {
   position: sticky;
   padding: 10px;
   margin: 10px 0;
-  top: 90px;
+  top: 100px;
   left: 0;
   z-index: 50;
   width: 400px;

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--first seen when starting trying mobile versions, really important stuff, kinda forgot what it actually does-->
+		<title>Fourth Task</title>
+		<link rel="stylesheet" href="style.css"> <!--styles-->
+		<link rel="icon" type="image/png" href="/favicon.png">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<form action="" method="post">
+				<fieldset>
+					<legend>registration form</legend>
+					<div class="form-control">
+						<label for="name">Name</label>
+						<input type="text" id="name" name="name" placeholder="Enter your name">
+					</div>
+					<div class="form-control">
+						<label for="email">Email</label>
+						<input type="email" id="email" name="email" placeholder="Enter your email">
+					</div>
+					<div class="form-control">
+						<label for="password">Password</label>
+						<input type="password" min="4" id="password" placeholder="Enter your password">
+					</div>
+					<div class="form-control">
+						<label for="password2">Confirm Password</label>
+						<input type="password" min="4" id="password2" placeholder="Confirm your password">
+					</div>
+					<button type="submit" class="btn">Submit</button>
+				</fieldset>
+			</form>
+
+			<form action="" method="get">
+				<legend>reminder form</legend>
+				<div class="form-control">
+					<label for="name">Name</label>
+					<input type="text" id="name" name="name" placeholder="Enter your name">
+				</div>
+				<div class="form-control">
+					<label for="tel">Email</label>
+					<input type="tel" id="tel" placeholder="Enter your telephone">
+				</div>
+				<div class="form-control">
+					<label>
+						M
+						<input type="radio" id="m" name="sex" value="1">
+					</label>
+					<label>
+						F
+						<input type="radio" id="f" name="sex" value="2">
+					</label>
+				</div>
+				<div class="form-control">
+					<label>
+						Date of reminder
+						<input type="datetime-local" id="date" name="date">
+					</label>
+					<label>
+						personal call
+						<input type="checkbox" id="personalCall" name="personalCall">
+					</label>
+				</div>
+				<button type="submit" class="btn">Submit</button>
+			</form>
+
+			<form action="" method="post" enctype="multipart/form-data">
+				<legend>file form</legend>
+				<div class="form-control">
+					<label for="name">Name</label>
+					<input type="text" id="name" name="name" placeholder="Enter your name">
+				</div>
+				<div class="form-control">
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email" placeholder="Enter your email">
+				</div>
+				<div class="form-control">
+					<label for="file">File</label>
+					<input type="file" id="file" name="file">
+				</div>
+				<button type="submit" class="btn">Submit</button>
+			</form>
+
+			<form action="" method="post">
+				<legend>city form</legend>
+				<div class="form-control">
+					<label for="name">Name</label>
+					<input type="text" id="name" name="name" placeholder="Enter your name">
+				</div>
+				<div class="form-control">
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email" placeholder="Enter your email">
+				</div>
+				<div class="form-control">
+					<label for="city">City</label>
+					<select name="city" id="city" name="city" required>
+						<option value="1">Minsk</option>
+						<option value="2">Moscow</option>
+						<option value="3">Kiev</option>
+						<option value="4">London</option>
+						<option value="5" disabled>Paris</option>
+					</select>
+				</div>
+				<button type="submit" class="btn">Submit</button>
+			</form>
+
+			<form action="" method="post">
+				<legend>icecream form</legend>
+				<div class="form-control">
+					<label for="name">Name</label>
+					<input type="text" id="name" name="name" placeholder="Enter your name">
+				</div>
+				<div class="form-control">
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email" placeholder="Enter your email">
+				</div>
+				<div class="form-control">
+					<label for="icecream">Icecream</label>
+					<select name="icecream" id="icecream" name="icecream" multiple>
+						<option value="1">Chocolate</option>
+						<option value="2">Vanilla</option>
+						<option value="3">Strawberry</option>
+						<option value="4">Mint</option>
+						<option value="5">Banana</option>
+					</select>
+				</div>
+				<button type="submit" class="btn">Submit</button>
+		</div>
+		<div class="container">
+			<iframe width="500" height="400" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+				<video controls preload="auto" poster="https://talbotspy.org/files/2017/04/Screen-Shot-2017-04-28-at-8.33.55-AM.jpg" width="250">
+					<source src="/media/cc0-videos/flower.webm" type="video/webm">
+					<source src="/media/cc0-videos/flower.mp4" type="video/mp4">
+				</video>
+			</iframe>
+		</div>
+	</body>
+</html>

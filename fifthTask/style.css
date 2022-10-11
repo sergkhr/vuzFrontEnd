@@ -1,0 +1,186 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+#header {
+  display: flex;
+  width: 100%;
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  box-shadow: 0px 0px 10px 2px black;
+}
+#header #logo {
+  margin: auto 20px auto 20px;
+  display: inline;
+  height: 50px;
+}
+#header .menu {
+  display: flex;
+  justify-content: space-evenly;
+  height: fit-content;
+  list-style-type: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: aliceblue;
+}
+#header .menu li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 20px;
+  height: 50px;
+  width: 100px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 2px black;
+  background-color: aqua;
+}
+#header .menu li:hover {
+  background-color: #00aeae;
+}
+#header .menu li a {
+  text-decoration: none;
+  color: #000000;
+}
+#header .menu li a:hover {
+  color: #ff0000;
+}
+#header .menu:after {
+  content: "menu end";
+}
+#header #menuToggleCheckbox {
+  display: none;
+}
+#header #menuToggle {
+  display: none;
+  float: right;
+  width: 30px;
+  height: 30px;
+  margin: 10px 20px;
+  position: relative;
+}
+#header #menuToggle .menuRows {
+  position: absolute;
+  transition: opacity 0.3s ease-in-out;
+}
+#header #menuToggle .menuRows span {
+  display: block;
+  height: 3px;
+  width: 29px;
+  background-color: #000000;
+  margin: 5px 0;
+}
+#header #menuToggle .menuCross {
+  position: absolute;
+  top: 13px;
+  transition: opacity 0.3s ease-in-out;
+}
+#header #menuToggle .menuCross span {
+  display: block;
+  height: 3px;
+  width: 30px;
+  background-color: #000000;
+}
+#header #menuToggle .menuCross span:nth-child(1) {
+  transform: rotate(45deg);
+}
+#header #menuToggle .menuCross span:nth-child(2) {
+  transform: rotate(-45deg);
+  margin-top: -3px;
+}
+main {
+  margin-top: 100px;
+  box-sizing: border-box;
+}
+main .container {
+  display: flex;
+  flex-wrap: wrap;
+}
+main .container .big {
+  width: calc(100% - 20px);
+  height: 300px;
+  background-color: #8c00ff;
+  margin: 10px;
+}
+main .container .gallery {
+  width: calc(70% - 20px);
+  margin: 10px;
+  background-color: burlywood;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+main .container .gallery > div {
+  margin: 5px;
+}
+main .container .gallery .smallPic {
+  background-color: green;
+  height: 50px;
+  width: 50px;
+}
+main .container .gallery .mediumPic {
+  background-color: blue;
+  height: 50px;
+  width: 100px;
+}
+main .container .gallery .bigPic {
+  background-color: red;
+  height: 50px;
+  width: 150px;
+}
+main .container .small {
+  width: calc(30% - 20px);
+  height: 150px;
+  background-color: #00ff22;
+  margin: 10px;
+}
+@media (max-width: 768px) {
+  #header {
+    display: initial;
+  }
+  #header #menuToggle {
+    display: initial;
+  }
+  #header .menu {
+    flex-direction: column;
+    align-items: center;
+  }
+  #header .menu li {
+    margin: 10px;
+    width: 200px;
+  }
+  #header #menuToggleCheckbox:checked + label#menuToggle .menuRows {
+    opacity: 0;
+  }
+  #header #menuToggleCheckbox:checked + label#menuToggle .menuCross {
+    opacity: 1;
+  }
+  #header #menuToggleCheckbox:not(:checked) + label#menuToggle .menuRows {
+    opacity: 1;
+  }
+  #header #menuToggleCheckbox:not(:checked) + label#menuToggle .menuCross {
+    opacity: 0;
+  }
+  #header #menuToggleCheckbox:not(:checked) + label#menuToggle + ul.menu {
+    height: 0;
+  }
+  main .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  main .container .gallery {
+    width: calc(100% - 20px);
+  }
+  main .container .small {
+    width: calc(50% - 20px);
+  }
+}

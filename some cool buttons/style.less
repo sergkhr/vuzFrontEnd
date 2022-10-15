@@ -1,0 +1,451 @@
+@myPurple: rgb(218, 3, 218);
+@frontColor: rgb(20, 218, 20);
+@topColor: rgb(6, 212, 157);
+@buttonWidth: 200px;
+@buttonHeight: 70px;
+.mix-in-flex{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@keyframes overflowDelay{
+	from{
+		overflow: hidden;
+	}
+	to{
+		overflow: visible;
+	}
+}
+@keyframes rotate {
+	100% {
+		transform: rotate(1turn);
+	}
+}
+@keyframes vertical-spin {
+	from {
+		transform: rotateX(0);
+	}
+	to {
+		transform: rotateX(360deg);
+	}
+}
+
+html, body{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: rgb(45, 64, 64);
+	div{
+		box-sizing: border-box;
+	}
+}
+#header{
+	display: flex;
+	width: 100%;
+	background-color: rgb(255, 255, 255);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	box-shadow: 0px 0px 10px 2px black;
+	#logo{
+		margin: auto 20px auto 20px;
+		display: inline;
+		height: 50px;
+	}
+
+	.menu{
+		display: flex;
+		justify-content: space-evenly;
+		height: fit-content;
+		list-style-type: none;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		background-color: aliceblue;
+		li{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 24px;
+			font-weight: 400;
+			margin: 20px;
+			height: 50px;
+			width: 100px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px 2px black;
+			background-color: aqua;
+			&:hover{
+				background-color: rgb(0, 174, 174);
+			}
+			a{
+				text-decoration: none;
+				color: rgb(0, 0, 0);
+				&:hover{
+					color: rgb(255, 0, 0);
+				}
+			}
+		}
+		&:after{
+			content: "menu end";
+		}
+	}
+
+	#menuToggleCheckbox{
+		display: none;
+	}
+	
+	#menuToggle{
+		display: none; //in mobile version is visible
+		float: right;
+		width: 30px;
+		height: 30px;
+		margin: 10px 20px;
+		position: relative;
+		.menuRows{
+			position: absolute;
+			transition: opacity 0.3s ease-in-out;
+			span{
+				display: block;
+				height: 3px;
+				width: 29px;
+				background-color: rgb(0, 0, 0);
+				margin: 5px 0;
+			}
+		}
+		.menuCross{
+			position: absolute;
+			top: 13px;
+			transition: opacity 0.3s ease-in-out;
+			span{
+				display: block;
+				height: 3px;
+				width: 30px;
+				background-color: rgb(0, 0, 0);
+				&:nth-child(1){
+					transform: rotate(45deg);
+				}
+				&:nth-child(2){
+					transform: rotate(-45deg);
+					margin-top: -3px;
+				}
+			}
+		}
+	}
+}
+main{
+	margin-top: 100px;
+
+	.notificationsWrapper{
+		position: relative;
+		width: fit-content;
+		height: fit-content;
+		margin: 20px;
+	}
+	.notifications{
+		background-color: antiquewhite;
+		
+		width: 30px;
+		height: 30px;
+		transition: width 0.3s cubic-bezier(.51,.03,.09,1.6), height 0.3s cubic-bezier(.51,.03,.09,1.6);
+		border-radius: 15px;
+		overflow: hidden;
+		&:before{
+			content: "4";
+			background-color: red;
+			box-shadow: 0px 0px 0px 3px rgba(255, 0, 0, 0.535);
+			color: white;
+			width: 15px;
+			height: 15px;
+			font-size: 12px;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			top: -5px;
+			right: -5px;
+		}
+		>div{
+			padding: 5px;
+			height: 30px;
+			border-top-left-radius: 15px;
+			border-top-right-radius: 15px;
+			transition: background-color 0.3s ease-in-out;
+			
+			img{
+				height: 20px;
+				width: 20px;
+			}
+		}
+		ul{
+			list-style-type: none;
+			padding-inline-start: 0;
+			margin: 0;
+			padding: 0;
+			li{
+				box-sizing: border-box;
+				padding: 5px;
+				width: 100%;
+				height: 30px;
+				font-size: 16px;
+				line-height: 20px;
+				border-radius: 10px;
+				box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0);
+				transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+				display: flex;
+				span{
+					width: 20px;
+					height: 20px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					border-radius: 50%;
+					transition: background-color 0.3s ease-in-out;
+					background-color: @myPurple;
+					margin-right: 15px;
+				}
+				&:hover{
+					background-color: @myPurple;
+					transform: scale(1.2);
+					box-shadow: 0px 0px 5px 0px rgb(0, 0, 0);
+					span{
+						background-color: antiquewhite;
+					}
+				}
+			}
+		}
+	}
+	.notifications:hover{
+		width: 150px;
+		height: 150px;
+		animation-name: overflowDelay;
+		animation-delay: 0.3s;
+		animation-fill-mode: both;
+		>div{
+			background-color: @myPurple;
+		}
+	}
+
+	.container{
+		display: flex;
+		flex-wrap: wrap;
+		.big{
+			width: calc(100% - 20px);
+			height: 300px;
+			margin: 10px;
+			display: flex;
+			justify-content: space-evenly;
+			flex-wrap: wrap;
+			
+			.buttonContainer{
+				perspective: 800px;
+				width: fit-content;
+				height: fit-content;
+				>.button{
+					width: @buttonWidth;
+					height: @buttonHeight;
+					margin: 30px 20px;
+					text-align: center;
+					font-size: 20px;
+					color: white;
+					position: relative;
+					cursor: pointer;
+					.mix-in-flex();
+				}
+				.fancyButtonA{
+					transition: transform 0.5s ease;
+					transform-style: preserve-3d;
+					>div{
+						width: 100%;
+						height: 100%;
+						border: 1px solid black;
+						color: black;
+						position: absolute;
+						.mix-in-flex();
+					}
+					@halfHeight: (@buttonHeight / 2);
+					.front{
+						background: @frontColor;
+						transform: translateZ(@halfHeight) rotateX(0deg); //order is important ffffffck
+					}
+					.top{
+						background: @topColor;
+						transform: translateY(-@halfHeight) rotateX(90deg);
+					}
+					.back{
+						background: @frontColor;
+						transform: translateZ(-@halfHeight) rotateX(180deg);
+					}
+					.bottom{
+						background: @topColor;
+						transform: translateY(@halfHeight) rotateX(270deg);
+					}
+					&:hover{
+						transform: rotateX(-90deg);
+					}
+					// &{
+					// 	animation: vertical-spin 5s infinite linear;
+					// }
+					
+				}
+				.fancyButtonB{
+					border: 3px solid transparent;
+					border-radius: 15px;
+					color: black;
+					overflow: hidden;
+					background-clip: padding-box, border-box;
+					background-origin: border-box;
+					--angle: 0deg;
+					@property --angle {
+						syntax: "<angle>";
+						initial-value: 0deg;
+						inherits: false;
+					}
+					background-image:
+						linear-gradient(to right, rgb(255 255 255), rgb(255 255 255)),
+						conic-gradient(
+							from var(--angle),
+							(@myPurple) 0deg 70deg,
+							#39995300 70deg 180deg,
+							(@myPurple) 180deg 290deg,
+							#39995300 290deg 360deg
+						);
+					animation: conic-gradient-rotation 1.5s linear infinite;
+					animation-play-state: paused;
+					@keyframes conic-gradient-rotation {
+						0%{
+							--angle:30deg;
+						}
+						100%{
+							--angle: 390deg;
+						}
+					}
+					&:hover{
+						animation-play-state: running;
+					}
+				}
+				.fancyButtonC{
+					border: 3px dashed red;
+					background-color: @topColor;
+					color: black;
+					overflow: hidden;
+					border-radius: 15px;
+					&:before{
+						content: "";
+						position: absolute;
+						width: 800px;
+						height: 0px;
+						//background-image: linear-gradient(to top right, transparent, rgba(255, 255, 255, 0.364), transparent);
+						box-shadow: 0px 0px 100px 50px rgb(255, 255, 255);
+						transform: rotateZ(-30deg) translateY(-400px);
+						transition: transform 1s ease;
+					}
+					&:hover{
+						&:before{
+							transform: rotateZ(-30deg) translateY(400px);
+						}
+					}
+				}
+				.fancyButtonD{
+	
+				}
+			}
+			
+		}
+		.gallery{
+			width: calc(70% - 20px);
+			margin: 10px;
+			background-color: burlywood;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			>div{
+				margin: 5px;
+			}
+			.smallPic{
+				background-color: green;
+				height: 50px;
+				width: 50px;
+			}
+			.mediumPic{
+				background-color: blue;
+				height: 50px;
+				width: 100px;
+			}
+			.bigPic{
+				background-color: red;
+				height: 50px;
+				width: 150px;
+			}
+		}
+		.small{
+			width: calc(30% - 20px);
+			height: 150px;
+			background-color: rgb(0, 255, 34);
+			margin: 10px;
+		}
+	}
+}
+
+
+
+@media (max-width: 768px) {
+	#header{
+		display: initial;
+		#menuToggle{
+			display: initial;
+		}
+		.menu{
+			flex-direction: column;
+			align-items: center;
+			li{
+				margin: 10px;
+				width: 200px;
+			}
+		}
+		#menuToggleCheckbox:checked{//opened menu
+			+label#menuToggle{ 
+				.menuRows{
+					opacity: 0;
+				}
+				.menuCross{
+					opacity: 1;
+				}
+			}
+		}
+		#menuToggleCheckbox:not(:checked){//closed menu
+			+label#menuToggle{ 
+				.menuRows{
+					opacity: 1;
+				}
+				.menuCross{
+					opacity: 0;
+				}
+				+ul.menu{
+					height: 0;
+				}
+			}
+		}
+	}
+
+	main{
+		.container{
+			flex-direction: column;
+			align-items: center;
+			.big{
+				flex-direction: column;
+				height: fit-content;
+			}
+			.gallery{
+				width: calc(100% - 20px);
+			}
+			.small{
+				width: calc(50% - 20px);
+			}
+		}
+	}
+}

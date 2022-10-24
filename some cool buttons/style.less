@@ -466,13 +466,14 @@ main{
 			> div{
 				display: flex;
 				justify-content: space-evenly;
+				flex-wrap: wrap;
 				align-items: center;
 			}
 			.firstCards{
 				> div{
 					width: 300px;
 					height: 200px;
-					margin: 100px 20px;
+					margin: 150px 20px;
 					position: relative;
 					.mix-in-flex-center();
 
@@ -581,9 +582,10 @@ main{
 				}
 				.card1{
 					.gradientLine{
-						background: linear-gradient(to bottom, rgb(137, 244, 6), rgb(0, 195, 255));
+						background: linear-gradient(to bottom, rgb(244, 6, 50), rgb(212, 0, 255));
+						filter: brightness(0.85);
 						&::before{
-							background: linear-gradient(to bottom, rgb(137, 244, 6), rgb(0, 195, 255));
+							background: linear-gradient(to bottom, rgb(244, 6, 50), rgb(212, 0, 255));
 						}
 					}
 				}
@@ -604,10 +606,131 @@ main{
 					}
 				}
 			}
+			.secondCards{
+				background: linear-gradient(to right top, rgb(0, 255, 183), rgb(223, 253, 0), rgb(255, 1, 200));
+				position: relative;
+				.background{
+					content: "";
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					top: 0;
+					left: 0;
+					opacity: 0;
+					transition: opacity 0.3s ease-in-out;
+					z-index: 1;
+					backdrop-filter: blur(20px);
+				}
+				> div{
+					width: 200px;
+					height: 300px;
+					border-radius: 5px;
+					margin: 80px 20px 100px 20px;
+					background-color: rgb(255, 255, 255);
+					box-shadow: 0px 0px 10px 2px black;
+					position: relative;
+					overflow: hidden;
+					z-index: 2;
+					.topCircle{
+						width: 220px;
+						height: 220px;
+						border-radius: 50%;
+						position: absolute;
+						top: -100px;
+						left: 50%;
+						transform: translateX(-50%);
+					}
+					@keyframes zIndexDelayHovered {
+						from{
+							z-index: 2;
+						}
+						to{
+							z-index: 4;
+						}
+					}
+					@keyframes zindexDelayBackground {
+						from{
+							z-index: 1;
+						}
+						to{
+							z-index: 3;
+						}
+					}
+					&:hover{
+						animation: zIndexDelayHovered;
+						animation-delay: 0.3s;
+						animation-fill-mode: both;
+						& ~ .background{
+							animation: zIndexDelayBackgroud;
+							animation-delay: 0.3s;
+							animation-fill-mode: both;
+							opacity: 1;
+						}
+					}
+				}
+				.card1{
+					.topCircle{
+						background-color: rgb(0, 255, 183);
+					}
+				}
+				.card2{
+					.topCircle{
+						background-color: rgb(223, 253, 0);
+					}
+				}
+				.card3{
+					.topCircle{
+						background-color: rgb(255, 1, 200);
+					}
+				}
+			}
 		}
 	}
 }
-
+footer{
+	background-color: rgba(0, 0, 0, .1);
+	box-sizing: border-box;
+	padding: 20px 0;
+	width: 100%;
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, .1),
+		-4px -4px 10px rgba(0, 0, 0, .1);
+	i{
+		font-family: FontAwesome;
+		font-style: normal;
+	}
+	.socials{
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		.social{
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			.mix-in-flex-center();
+			box-shadow: 4px 4px 10px rgba(0, 0, 0, .6),
+				-4px -4px 10px rgba(0, 0, 0, .1);
+			font-size: 24px;
+			color: #fff;
+			overflow: hidden;
+			position: relative;
+			&::before{
+				content: "";
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: -2;
+				background: linear-gradient(to bottom right, rgb(244, 6, 50), rgb(212, 0, 255));
+				transform: translateY(-100%);
+				transition: transform 0.2s ease-in-out;
+			}
+			&:hover{
+				&::before{
+					transform: translateY(0);
+				}
+			}
+		}
+	}
+}
 
 
 @media (max-width: 768px) {

@@ -48,7 +48,7 @@ html, body{
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 1;
+	z-index: 1000;
 	box-shadow: 0px 0px 10px 2px black;
 	#logo{
 		margin: auto 20px auto 20px;
@@ -89,7 +89,7 @@ html, body{
 				}
 			}
 		}
-		&:after{
+		&::after{
 			content: "menu end";
 		}
 	}
@@ -153,7 +153,7 @@ main{
 		transition: width 0.3s cubic-bezier(.51,.03,.09,1.6), height 0.3s cubic-bezier(.51,.03,.09,1.6);
 		border-radius: 15px;
 		overflow: hidden;
-		&:before{
+		&::before{
 			content: "4";
 			background-color: red;
 			box-shadow: 0px 0px 0px 3px rgba(255, 0, 0, 0.535);
@@ -334,7 +334,7 @@ main{
 					color: black;
 					overflow: hidden;
 					border-radius: 15px;
-					&:before{
+					&::before{
 						content: "";
 						position: absolute;
 						width: 800px;
@@ -345,7 +345,7 @@ main{
 						transition: transform 1s ease;
 					}
 					&:hover{
-						&:before{
+						&::before{
 							transform: rotateZ(-30deg) translateY(400px);
 						}
 					}
@@ -356,7 +356,7 @@ main{
 					background: @myPurple;
 					background-origin: border-box;
 					overflow: hidden;
-					&:before{
+					&::before{
 						content: "";
 						position: absolute;
 						width: 200%;
@@ -368,7 +368,7 @@ main{
 						transition: transform 1s ease;
 					}
 					&:hover{
-						&:before{
+						&::before{
 							transform: translateX(0);
 						}
 					}
@@ -389,7 +389,7 @@ main{
 				position: relative;
 				box-shadow: 0px 0px 10px 2px black;
 				transition: transform 0.5s ease;
-				&:before{
+				&::before{
 					content: "smth";
 					color: white;
 					font-size: 20px;
@@ -408,7 +408,7 @@ main{
 				}
 				&:hover{
 					transform: translateY(-10px);
-					&:before{
+					&::before{
 						opacity: 1;
 					}
 				}
@@ -436,7 +436,7 @@ main{
 			margin: 10px;
 			position: relative;
 			.mix-in-flex-center();
-			&:before{
+			&::before{
 				content: "some text, that sure is a description";
 				position: absolute;
 				width: 100%;
@@ -454,9 +454,154 @@ main{
 				transform: translateX(-15%);
 			}
 			&:hover{
-				&:before{
+				&::before{
 					opacity: 1;
 					transform: translateX(-10%);
+				}
+			}
+		}
+		.glassSection{
+			width: 100%;
+			margin-top: 100px;
+			> div{
+				display: flex;
+				justify-content: space-evenly;
+				align-items: center;
+			}
+			.firstCards{
+				> div{
+					width: 300px;
+					height: 200px;
+					margin: 100px 20px;
+					position: relative;
+					.mix-in-flex-center();
+
+					.cardContent{
+						width: 100%;
+						height: 100%;
+						background-color: rgba(255, 255, 255, 0.117);
+						border-radius: 10px;
+						backdrop-filter: blur(10px);
+						z-index: 5;
+						box-shadow: 4px 4px 10px rgba(0, 0, 0, .1),
+									 -4px -4px 10px rgba(0, 0, 0, .1);
+					}
+					.gradientLine{
+						content: "";
+						position: absolute;
+						width: 50%;
+						height: 200%;
+						left: 20%;
+						transform: skew(15deg);
+						transition: transform 0.6s ease-in-out;
+						border-radius: 5px;
+						z-index: -1;
+						&::before{
+							content: "";
+							position: absolute;
+							top: 0;
+							right: 0;
+							left: 0;
+							bottom: 0;
+							border-radius: 5px;
+							z-index: -2;
+							filter: blur(40px);
+						}
+					}
+					@keyframes squareFloatDown {
+						0% {
+							transform: translateY(0);
+						}
+						50%{
+							transform: translateY(90px);
+						}
+						100%{
+							transform: translateY(0);
+						}
+					}
+					@keyframes squareFloatUp {
+						0% {
+							transform: translateY(0);
+						}
+						50%{
+							transform: translateY(-90px);
+						}
+						100%{
+							transform: translateY(0);
+						}
+					}
+					.floatingSquareTop{
+						width: 70px;
+						height: 70px;
+						border-radius: 5px;
+						background-color: rgba(255, 255, 255, 0.117);
+						box-shadow: 4px 4px 10px rgba(0, 0, 0, .1),
+									 -4px -4px 10px rgba(0, 0, 0, .1);
+						backdrop-filter: blur(5px);
+						z-index: 10;
+						position: absolute;
+						left: 17%;
+						top: -100px;
+						animation: squareFloatDown 3s cubic-bezier(.59,.29,.34,1.5) infinite;
+						animation-play-state: paused;
+						opacity: 0;
+						transition: opacity 0.2s ease-in-out;
+					}
+					.floatingSquareBottom{
+						width: 70px;
+						height: 70px;
+						border-radius: 5px;
+						background-color: rgba(255, 255, 255, 0.117);
+						box-shadow: 4px 4px 10px rgba(0, 0, 0, .1),
+									 -4px -4px 10px rgba(0, 0, 0, .1);
+						backdrop-filter: blur(5px);
+						z-index: 10;
+						position: absolute;
+						right: 24%;
+						bottom: -130px;
+						animation: squareFloatUp 3s cubic-bezier(.33,.46,.72,1.31) infinite;
+						animation-play-state: paused;
+						opacity: 0;
+						transition: opacity 0.2s ease-in-out;
+					}
+
+					&:hover{
+						.floatingSquareTop{
+							animation-play-state: running;
+							opacity: 1;
+						}
+						.floatingSquareBottom{
+							animation-play-state: running;
+							opacity: 1;
+						}
+						.gradientLine{
+							transform: skew(0);
+						}
+					}
+				}
+				.card1{
+					.gradientLine{
+						background: linear-gradient(to bottom, rgb(137, 244, 6), rgb(0, 195, 255));
+						&::before{
+							background: linear-gradient(to bottom, rgb(137, 244, 6), rgb(0, 195, 255));
+						}
+					}
+				}
+				.card2{
+					.gradientLine{
+						background: linear-gradient(to bottom, rgb(255, 0, 0), rgb(255, 255, 0));
+						&::before{
+							background: linear-gradient(to bottom, rgb(255, 0, 0), rgb(255, 255, 0));
+						}
+					}
+				}
+				.card3{
+					.gradientLine{
+						background: linear-gradient(to bottom, rgb(255, 0, 255), rgb(0, 255, 255));
+						&::before{
+							background: linear-gradient(to bottom, rgb(255, 0, 255), rgb(0, 255, 255));
+						}
+					}
 				}
 			}
 		}

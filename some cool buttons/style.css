@@ -569,6 +569,161 @@ main .container .glassSection .firstCards .card3 .gradientLine {
 main .container .glassSection .firstCards .card3 .gradientLine::before {
   background: linear-gradient(to bottom, #ff00ff, #00ffff);
 }
+main .container .glassSection .loginWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .container .glassSection .loginWrapper .loginCont {
+  margin: 150px 40px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .container .glassSection .loginWrapper .loginCont .login {
+  width: 400px;
+  height: 400px;
+  box-sizing: border-box;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.117);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(0, 0, 0, 0.1);
+}
+main .container .glassSection .loginWrapper .loginCont .login h2 {
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+main .container .glassSection .loginWrapper .loginCont .login input[type=text] {
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  padding: 0 10px;
+  background-color: rgba(255, 255, 255, 0.117);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(0, 0, 0, 0.1);
+}
+main .container .glassSection .loginWrapper .loginCont .login input[type=text]::placeholder {
+  color: lightgray;
+}
+main .container .glassSection .loginWrapper .loginCont .login input[type=password] {
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  padding: 0 10px;
+  background-color: rgba(255, 255, 255, 0.117);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(0, 0, 0, 0.1);
+}
+main .container .glassSection .loginWrapper .loginCont .login input[type=password]::placeholder {
+  color: lightgray;
+}
+main .container .glassSection .loginWrapper .loginCont .login input[type=submit] {
+  width: min-content;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  background-color: #ffffff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+main .container .glassSection .loginWrapper .loginCont .login input[type=submit]::placeholder {
+  color: gray;
+  font-size: 20px;
+}
+main .container .glassSection .loginWrapper .loginCont .login input[type=submit]:active {
+  transform: scale(0.95);
+}
+main .container .glassSection .loginWrapper .loginCont .floatingSquare {
+  background-color: rgba(255, 255, 255, 0.117);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+@keyframes moveStar {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(20px, -100px);
+  }
+  40% {
+    transform: translate(40px, 0);
+  }
+  60% {
+    transform: translate(50px, -60px);
+  }
+  80% {
+    transform: translate(-20px, -70px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes moveTriangle {
+  0% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(10px, 70px);
+  }
+  66% {
+    transform: translate(50px, 30px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+main .container .glassSection .loginWrapper .loginCont .floatingSquare.one {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 110px;
+  left: -110px;
+  animation: moveStar 7s ease-in-out infinite alternate;
+  z-index: 8;
+}
+main .container .glassSection .loginWrapper .loginCont .floatingSquare.two {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: -60px;
+  right: -45px;
+  animation: moveTriangle 5s ease-in-out infinite;
+  z-index: 11;
+}
+main .container .glassSection .loginWrapper .loginCont .floatingSquare.three {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 250px;
+  right: -50px;
+  animation: moveStar 6s ease-in-out infinite;
+  z-index: 9;
+}
+main .container .glassSection .loginWrapper .loginCont .floatingSquare.four {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  bottom: -10px;
+  left: 60px;
+  animation: moveTriangle 4s ease-in-out infinite reverse;
+  z-index: 11;
+}
+main .container .glassSection .loginWrapper .loginCont .floatingSquare.five {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 10px;
+  left: 150px;
+  animation: moveStar 5s ease-in-out infinite reverse;
+  z-index: 13;
+}
 main .container .glassSection .secondCards {
   background: linear-gradient(to right top, #00ffb7, #dffd00, #ff01c8);
   position: relative;
@@ -605,31 +760,11 @@ main .container .glassSection .secondCards > div .topCircle {
   left: 50%;
   transform: translateX(-50%);
 }
-@keyframes zIndexDelayHovered {
-  from {
-    z-index: 2;
-  }
-  to {
-    z-index: 4;
-  }
-}
-@keyframes zindexDelayBackground {
-  from {
-    z-index: 1;
-  }
-  to {
-    z-index: 3;
-  }
-}
 main .container .glassSection .secondCards > div:hover {
-  animation: zIndexDelayHovered;
-  animation-delay: 0.3s;
-  animation-fill-mode: both;
+  z-index: 3;
 }
 main .container .glassSection .secondCards > div:hover ~ .background {
-  animation: zIndexDelayBackgroud;
-  animation-delay: 0.3s;
-  animation-fill-mode: both;
+  z-index: 2;
   opacity: 1;
 }
 main .container .glassSection .secondCards .card1 .topCircle {
@@ -640,6 +775,78 @@ main .container .glassSection .secondCards .card2 .topCircle {
 }
 main .container .glassSection .secondCards .card3 .topCircle {
   background-color: #ff01c8;
+}
+main .container .glassSection .thirdCards {
+  position: relative;
+}
+main .container .glassSection .thirdCards .background {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  background-color: #2d4040;
+  z-index: 1;
+}
+main .container .glassSection .thirdCards > div {
+  width: 200px;
+  height: 300px;
+  margin: 100px 20px;
+  border: 5px solid;
+  border-color: #1c1c1c;
+  transition: border-color 0.8s ease-in-out, filter 0.3s ease-in-out;
+  filter: brightness(0.8);
+  color: white;
+  overflow: hidden;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  position: relative;
+  z-index: 2;
+  --angle: 0deg;
+  background-image: linear-gradient(to right, #00336e 0% 50%, #001c3b 50% 100%), conic-gradient(from var(--angle), #1c1c1c 0deg 130deg, #da03da 180deg, #1c1c1c 180deg 310deg, #da03da 360deg);
+  animation: conic-gradient-rotation 1.5s linear infinite;
+}
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes conic-gradient-rotation {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
+main .container .glassSection .thirdCards > div:hover {
+  border-color: transparent;
+  filter: brightness(1.2);
+  z-index: 3;
+}
+main .container .glassSection .thirdCards > div:hover .cardNumber {
+  opacity: 1;
+  transform: translateY(0px);
+}
+main .container .glassSection .thirdCards > div:hover ~ .background {
+  z-index: 2;
+  opacity: 0.3;
+}
+main .container .glassSection .thirdCards > div .cardNumber {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 15px 20px;
+  color: #0055b6;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.1;
+  z-index: -1;
+  transform: translateY(70px);
+  transition: all 0.3s ease-in-out;
 }
 footer {
   background-color: rgba(0, 0, 0, 0.1);

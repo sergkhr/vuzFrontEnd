@@ -314,8 +314,6 @@ main{
 							(@myPurple) 180deg 290deg,
 							#39995300 290deg 360deg
 						);
-					animation: conic-gradient-rotation 1.5s linear infinite;
-					animation-play-state: paused;
 					@keyframes conic-gradient-rotation {
 						0%{
 							--angle:30deg;
@@ -324,6 +322,8 @@ main{
 							--angle: 390deg;
 						}
 					}
+					animation: conic-gradient-rotation 1.5s linear infinite;
+					animation-play-state: paused;
 					&:hover{
 						animation-play-state: running;
 					}
@@ -606,6 +606,161 @@ main{
 					}
 				}
 			}
+			.loginWrapper{
+				.mix-in-flex-center();
+				.loginCont{
+					margin: 150px 40px;
+					position: relative;
+					.mix-in-flex-center();
+					.login{
+						width: 400px;
+						height: 400px;
+						box-sizing: border-box;
+						padding: 30px 20px;
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+						background-color: rgba(255, 255, 255, 0.117);
+						border-radius: 10px;
+						backdrop-filter: blur(10px);
+						z-index: 10;
+						box-shadow: 4px 4px 10px rgba(0, 0, 0, .1),
+								-4px -4px 10px rgba(0, 0, 0, .1);
+						h2{
+							font-size: 30px;
+							font-weight: 600;
+							color: #fff;
+							text-align: center;
+							margin-bottom: 20px;
+						}
+						input[type=text]{
+							height: 40px;
+							border: none;
+							border-radius: 5px;
+							padding: 0 10px;
+							background-color: rgba(255, 255, 255, 0.117);
+							box-shadow: 4px 4px 10px rgba(0, 0, 0, .1),
+											-4px -4px 10px rgba(0, 0, 0, .1);
+							&::placeholder{
+								color: lightgray;
+							}
+						}
+						input[type=password]{
+							height: 40px;
+							border: none;
+							border-radius: 5px;
+							padding: 0 10px;
+							background-color: rgba(255, 255, 255, 0.117);
+							box-shadow: 4px 4px 10px rgba(0, 0, 0, .1),
+											-4px -4px 10px rgba(0, 0, 0, .1);
+							&::placeholder{
+								color: lightgray;
+							}
+						}
+						input[type=submit]{
+							width: min-content;
+							border: none;
+							border-radius: 5px;
+							padding: 10px 15px;
+							background-color: rgb(255, 255, 255);
+							box-shadow: 4px 4px 10px rgba(0, 0, 0, .1),
+											-4px -4px 10px rgba(0, 0, 0, .1);
+							cursor: pointer;
+							&::placeholder{
+								color: gray;
+								font-size:20px;
+							}
+							&:active{
+								transform: scale(0.95);
+							}
+						}
+					}
+					.floatingSquare{
+						background-color: rgba(255, 255, 255, 0.117);
+						border-radius: 10px;
+						backdrop-filter: blur(10px);
+						@keyframes moveStar {
+							0%{
+								transform: translate(0, 0);
+							}
+							20%{
+								transform: translate(20px, -100px);
+							}
+							40%{
+								transform: translate(40px, 0);
+							}
+							60%{
+								transform: translate(50px, -60px);
+							}
+							80%{
+								transform: translate(-20px, -70px);
+							}
+							100%{
+								transform: translate(0, 0);
+							}
+						}
+						@keyframes moveTriangle {
+							0%{
+								transform: translate(0, 0);
+							}
+							33%{
+								transform: translate(10px, 70px);
+							}
+							66%{
+								transform: translate(50px, 30px);
+							}
+							100%{
+								transform: translate(0, 0);
+							}
+						}
+						&.one{
+							width: 100px;
+							height: 100px;
+							position: absolute;
+							top: 110px;
+							left: -110px;
+							animation: moveStar 7s ease-in-out infinite alternate;
+							z-index: 8;
+						}
+						&.two{
+							width: 80px;
+							height: 80px;
+							position: absolute;
+							top: -60px;
+							right: -45px;
+							animation: moveTriangle 5s ease-in-out infinite;
+							z-index: 11;
+						}
+						&.three{
+							width: 60px;
+							height: 60px;
+							position: absolute;
+							top: 250px;
+							right: -50px;
+							animation: moveStar 6s ease-in-out infinite;
+							z-index: 9;
+						}
+						&.four{
+							width: 50px;
+							height: 50px;
+							position: absolute;
+							bottom: -10px;
+							left: 60px;
+							animation: moveTriangle 4s ease-in-out infinite reverse;
+							z-index: 11;
+						}
+						&.five{
+							width: 35px;
+							height: 35px;
+							position: absolute;
+							top: 10px;
+							left: 150px;
+							animation: moveStar 5s ease-in-out infinite reverse;
+							z-index: 13;
+						}
+					}
+				}
+			}
 			.secondCards{
 				background: linear-gradient(to right top, rgb(0, 255, 183), rgb(223, 253, 0), rgb(255, 1, 200));
 				position: relative;
@@ -640,30 +795,10 @@ main{
 						left: 50%;
 						transform: translateX(-50%);
 					}
-					@keyframes zIndexDelayHovered {
-						from{
-							z-index: 2;
-						}
-						to{
-							z-index: 4;
-						}
-					}
-					@keyframes zindexDelayBackground {
-						from{
-							z-index: 1;
-						}
-						to{
-							z-index: 3;
-						}
-					}
 					&:hover{
-						animation: zIndexDelayHovered;
-						animation-delay: 0.3s;
-						animation-fill-mode: both;
-						& ~ .background{
-							animation: zIndexDelayBackgroud;
-							animation-delay: 0.3s;
-							animation-fill-mode: both;
+						z-index: 3;
+						&~.background{
+							z-index: 2;
 							opacity: 1;
 						}
 					}
@@ -681,6 +816,87 @@ main{
 				.card3{
 					.topCircle{
 						background-color: rgb(255, 1, 200);
+					}
+				}
+			}
+			.thirdCards{
+				position: relative;
+				.background{
+					content: "";
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					top: 0;
+					left: 0;
+					opacity: 0;
+					transition: opacity 0.3s ease-in-out;
+					background-color: #2d4040;
+					z-index: 1; 
+				}
+				> div{
+					width: 200px;
+					height: 300px;
+					margin: 100px 20px;
+					border: 5px solid;
+					border-color: #1c1c1c;
+					transition: border-color 0.8s ease-in-out, filter 0.3s ease-in-out;
+					filter:brightness(0.8);
+					color: white;
+					overflow: hidden;
+					background-clip: padding-box, border-box;
+					background-origin: border-box;
+					position: relative;
+					z-index: 2;
+					--angle: 0deg;
+					@property --angle {
+						syntax: "<angle>";
+						initial-value: 0deg;
+						inherits: false;
+					}
+					background-image:
+						linear-gradient(to right, rgb(0, 51, 110) 0% 50%, rgb(0, 28, 59) 50% 100%),
+						conic-gradient(
+							from var(--angle),
+							(#1c1c1c) 0deg 130deg,
+							@myPurple 180deg,
+							(#1c1c1c) 180deg 310deg,
+							@myPurple 360deg
+						);
+					@keyframes conic-gradient-rotation {
+						0%{
+							--angle:0deg;
+						}
+						100%{
+							--angle: 360deg;
+						}
+					}
+					animation: conic-gradient-rotation 1.5s linear infinite;
+					&:hover{
+						border-color: transparent;
+						filter:brightness(1.2);
+						.cardNumber{
+							opacity: 1;
+							transform: translateY(0px);
+						}
+
+						z-index: 3;
+						&~.background{
+							z-index: 2;
+							opacity: 0.3;
+						}
+					}
+					.cardNumber{
+						font-size: 50px;
+						font-weight: bold;
+						margin: 15px 20px;
+						color:rgb(0, 85, 182);
+						position: absolute;
+						top: 0;
+						right: 0;
+						opacity: 0.1;
+						z-index: -1;
+						transform: translateY(70px);
+						transition: all 0.3s ease-in-out;
 					}
 				}
 			}

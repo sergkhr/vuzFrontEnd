@@ -1,0 +1,26 @@
+.mix-in-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@keyframes overflowDelay {
+  from {
+    overflow: hidden;
+  }
+  to {
+    overflow: visible;
+  }
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+@keyframes vertical-spin {
+  from {
+    transform: rotateX(0);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}

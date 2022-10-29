@@ -1,0 +1,40 @@
+.mix-in-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@keyframes overflowDelay {
+  from {
+    overflow: hidden;
+  }
+  to {
+    overflow: visible;
+  }
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+@keyframes vertical-spin {
+  from {
+    transform: rotateX(0);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #2d4040;
+}
+html div,
+body div,
+html section,
+body section {
+  box-sizing: border-box;
+}

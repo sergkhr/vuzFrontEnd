@@ -1,141 +1,5 @@
-@myPurple: rgb(218, 3, 218);
-@frontColor: rgb(20, 218, 20);
-@topColor: rgb(6, 212, 157);
-@buttonWidth: 200px;
-@buttonHeight: 70px;
-.mix-in-flex-center{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+@import url("vars.less");
 
-@keyframes overflowDelay{
-	from{
-		overflow: hidden;
-	}
-	to{
-		overflow: visible;
-	}
-}
-@keyframes rotate {
-	100% {
-		transform: rotate(1turn);
-	}
-}
-@keyframes vertical-spin {
-	from {
-		transform: rotateX(0);
-	}
-	to {
-		transform: rotateX(360deg);
-	}
-}
-
-html, body{
-	height: 100%;
-	width: 100%;
-	margin: 0;
-	padding: 0;
-	background-color: rgb(45, 64, 64);
-	div, section{
-		box-sizing: border-box;
-	}
-}
-#header{
-	display: flex;
-	width: 100%;
-	background-color: rgb(255, 255, 255);
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 1000;
-	box-shadow: 0px 0px 10px 2px black;
-	#logo{
-		margin: auto 20px auto 20px;
-		display: inline;
-		height: 50px;
-	}
-
-	.menu{
-		display: flex;
-		justify-content: space-evenly;
-		height: fit-content;
-		list-style-type: none;
-		width: 100%;
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-		background-color: aliceblue;
-		li{
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			font-size: 24px;
-			font-weight: 400;
-			margin: 20px;
-			height: 50px;
-			width: 100px;
-			border-radius: 10px;
-			box-shadow: 0px 0px 10px 2px black;
-			background-color: aqua;
-			&:hover{
-				background-color: rgb(0, 174, 174);
-			}
-			a{
-				text-decoration: none;
-				color: rgb(0, 0, 0);
-				&:hover{
-					color: rgb(255, 0, 0);
-				}
-			}
-		}
-		&::after{
-			content: "menu end";
-		}
-	}
-
-	#menuToggleCheckbox{
-		display: none;
-	}
-	
-	#menuToggle{
-		display: none; //in mobile version is visible
-		float: right;
-		width: 30px;
-		height: 30px;
-		margin: 10px 20px;
-		position: relative;
-		.menuRows{
-			position: absolute;
-			transition: opacity 0.3s ease-in-out;
-			span{
-				display: block;
-				height: 3px;
-				width: 29px;
-				background-color: rgb(0, 0, 0);
-				margin: 5px 0;
-			}
-		}
-		.menuCross{
-			position: absolute;
-			top: 13px;
-			transition: opacity 0.3s ease-in-out;
-			span{
-				display: block;
-				height: 3px;
-				width: 30px;
-				background-color: rgb(0, 0, 0);
-				&:nth-child(1){
-					transform: rotate(45deg);
-				}
-				&:nth-child(2){
-					transform: rotate(-45deg);
-					margin-top: -3px;
-				}
-			}
-		}
-	}
-}
 main{
 	margin-top: 100px;
 
@@ -231,12 +95,20 @@ main{
 	}
 
 	.container{
-		display: flex;
-		flex-wrap: wrap;
+		display: grid;
+		grid-template-columns: 7fr 3fr;
+		grid-template-rows: repeat(4, auto);
+		grid-template-areas: 
+			"big big"
+			"gallery small"
+			"glass glass"
+			"glass glass";
+		padding: 0px 20px;
+		gap: 20px;
 		.big{
-			width: calc(100% - 20px);
 			height: 300px;
 			margin: 10px;
+			grid-area: big;
 			display: flex;
 			justify-content: space-evenly;
 			flex-wrap: wrap;
@@ -377,15 +249,17 @@ main{
 			
 		}
 		.gallery{
-			width: calc(70% - 20px);
 			margin: 10px;
-			background-color: burlywood;
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			padding: 10px 0;
+			//background-color: burlywood;
+			display: grid;
+			grid-area: gallery;
+			grid-template-columns: repeat(6, 100px);
+			grid-auto-rows: 100px;
+			grid-auto-flow: row dense;
+			gap: 20px;
+			padding: 10px;
+			place-items: stretch;
 			>div{
-				margin: 10px;
 				position: relative;
 				box-shadow: 0px 0px 10px 2px black;
 				transition: transform 0.5s ease;
@@ -415,22 +289,22 @@ main{
 			}
 			.smallPic{
 				background-color: green;
-				height: 100px;
-				width: 100px;
+				grid-column-end: span 1;
+				grid-row-end: span 1;
 			}
 			.mediumPic{
 				background-color: blue;
-				height: 100px;
-				width: 200px;
+				grid-column: span 1;
+				grid-row-end: span 2;
 			}
 			.bigPic{
 				background-color: red;
-				height: 100px;
-				width: 300px;
+				grid-column-end: span 2;
+				grid-row-end: span 1;
 			}
 		}
 		.small{
-			width: calc(30% - 20px);
+			grid-area: small;
 			height: 300px;
 			background-color: rgb(0, 255, 34);
 			margin: 10px;
@@ -461,6 +335,7 @@ main{
 			}
 		}
 		.glassSection{
+			grid-area: glass;
 			width: 100%;
 			margin-top: 100px;
 			> div{
@@ -613,13 +488,21 @@ main{
 					position: relative;
 					.mix-in-flex-center();
 					.login{
-						width: 400px;
+						width: 800px;
 						height: 400px;
-						box-sizing: border-box;
 						padding: 30px 20px;
-						display: flex;
-						flex-direction: column;
-						justify-content: space-between;
+						display: grid;
+						grid-template-columns: 1fr 1fr;
+						grid-template-rows: repeat(5, 1fr);
+						grid-template-areas: 
+							"log log"
+							"username password"
+							"email phone"
+							"text text"
+							"button .";
+						justify-items: stretch;
+						align-items: center;
+						gap: 15px 20px;
 						background-color: rgba(255, 255, 255, 0.117);
 						border-radius: 10px;
 						backdrop-filter: blur(10px);
@@ -632,8 +515,9 @@ main{
 							color: #fff;
 							text-align: center;
 							margin-bottom: 20px;
+							grid-area: log;
 						}
-						input[type=text]{
+						input:not([type=submit]){
 							height: 40px;
 							border: none;
 							border-radius: 5px;
@@ -641,23 +525,31 @@ main{
 							background-color: rgba(255, 255, 255, 0.117);
 							box-shadow: 4px 4px 10px rgba(0, 0, 0, .1),
 											-4px -4px 10px rgba(0, 0, 0, .1);
+							transition: background-color 0.2s ease-in-out;
 							&::placeholder{
 								color: lightgray;
+							}
+							&:hover{
+								background-color: rgba(255, 255, 255, 0.2);
 							}
 						}
-						input[type=password]{
-							height: 40px;
-							border: none;
-							border-radius: 5px;
-							padding: 0 10px;
-							background-color: rgba(255, 255, 255, 0.117);
-							box-shadow: 4px 4px 10px rgba(0, 0, 0, .1),
-											-4px -4px 10px rgba(0, 0, 0, .1);
-							&::placeholder{
-								color: lightgray;
-							}
+						input[name="username"]{
+							grid-area: username;
+						}
+						input[name="password"]{
+							grid-area: password;
+						}
+						input[name="phone"]{
+							grid-area: phone;
+						}
+						input[name="email"]{
+							grid-area: email;
+						}
+						input[name="text"]{
+							grid-area: text;
 						}
 						input[type=submit]{
+							grid-area: button;
 							width: min-content;
 							border: none;
 							border-radius: 5px;
@@ -898,9 +790,11 @@ footer{
 		font-style: normal;
 	}
 	.socials{
-		display: flex;
-		justify-content: space-evenly;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		justify-items: center;
 		align-items: center;
+		row-gap: 20px;
 		.social{
 			width: 40px;
 			height: 40px;
@@ -931,60 +825,96 @@ footer{
 	}
 }
 
-
-@media (max-width: 768px) {
-	#header{
-		display: initial;
-		#menuToggle{
-			display: initial;
-		}
-		.menu{
-			flex-direction: column;
-			align-items: center;
-			li{
-				margin: 10px;
-				width: 200px;
+@media (min-width: 960px) and (max-width: 1200px){
+	main{
+		.container{
+			.gallery{
+				grid-template-columns: repeat(4, 100px);
 			}
-		}
-		#menuToggleCheckbox:checked{//opened menu
-			+label#menuToggle{ 
-				.menuRows{
-					opacity: 0;
-				}
-				.menuCross{
-					opacity: 1;
-				}
-			}
-		}
-		#menuToggleCheckbox:not(:checked){//closed menu
-			+label#menuToggle{ 
-				.menuRows{
-					opacity: 1;
-				}
-				.menuCross{
-					opacity: 0;
-				}
-				+ul.menu{
-					height: 0;
+			.glassSection{
+				.loginWrapper{
+					.loginCont{
+						.login{
+							width: 400px;
+						}
+					}
 				}
 			}
 		}
 	}
-
+} 
+@media (min-width: 640px) and (max-width: 960px){
 	main{
 		.container{
-			flex-direction: column;
-			align-items: center;
+			grid-template-columns: 1fr;
+			grid-template-areas: 
+				"big"
+				"gallery"
+				"small"
+				"glass";
+			.gallery{
+				grid-template-columns: repeat(5, 100px);
+			}
+			.glassSection{
+				.loginWrapper{
+					.loginCont{
+						.login{
+							width: 400px;
+						}
+					}
+				}
+			}
+		}
+	}
+	footer{
+		.socials{
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(3, 1fr);
+		}
+	}
+} 
+@media (max-width: 640px) {
+	main{
+		.container{
+			grid-template-columns: 1fr;
+			grid-template-areas: 
+				"big"
+				"gallery"
+				"small"
+				"glass";
 			.big{
 				flex-direction: column;
 				height: fit-content;
 			}
 			.gallery{
-				width: calc(100% - 20px);
+				grid-template-columns: repeat(2, 100px);
 			}
 			.small{
 				width: calc(50% - 20px);
 			}
+			.glassSection{
+				.loginWrapper{
+					.loginCont{
+						.login{
+							width: 100%;
+							grid-template-areas: 
+							"log log"
+							"username username"
+							"password password"
+							"email email"
+							"phone phone"
+							"text text"
+							"button .";
+						}
+					}
+				}
+			}
+		}
+	}
+	footer{
+		.socials{
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(3, 1fr);
 		}
 	}
 }

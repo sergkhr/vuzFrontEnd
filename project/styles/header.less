@@ -1,0 +1,137 @@
+@import url("vars.less");
+
+#header{
+	display: flex;
+	width: 100%;
+	background-color: rgb(255, 255, 255);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	box-shadow: 0px 0px 10px 2px black;
+	#logo{
+		margin: auto 20px auto 20px;
+		display: inline;
+		height: 50px;
+	}
+
+	.menu{
+		display: flex;
+		justify-content: space-evenly;
+		height: fit-content;
+		list-style-type: none;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		background-color: aliceblue;
+		li{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 24px;
+			font-weight: 400;
+			margin: 20px;
+			height: 50px;
+			width: 100px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px 2px black;
+			background-color: aqua;
+			&:hover{
+				background-color: rgb(0, 174, 174);
+			}
+			a{
+				text-decoration: none;
+				color: rgb(0, 0, 0);
+				&:hover{
+					color: rgb(255, 0, 0);
+				}
+			}
+		}
+		&::after{
+			content: "menu end";
+		}
+	}
+
+	#menuToggleCheckbox{
+		display: none;
+	}
+	
+	#menuToggle{
+		display: none; //in mobile version is visible
+		float: right;
+		width: 30px;
+		height: 30px;
+		margin: 10px 20px;
+		position: relative;
+		.menuRows{
+			position: absolute;
+			transition: opacity 0.3s ease-in-out;
+			span{
+				display: block;
+				height: 3px;
+				width: 29px;
+				background-color: rgb(0, 0, 0);
+				margin: 5px 0;
+			}
+		}
+		.menuCross{
+			position: absolute;
+			top: 13px;
+			transition: opacity 0.3s ease-in-out;
+			span{
+				display: block;
+				height: 3px;
+				width: 30px;
+				background-color: rgb(0, 0, 0);
+				&:nth-child(1){
+					transform: rotate(45deg);
+				}
+				&:nth-child(2){
+					transform: rotate(-45deg);
+					margin-top: -3px;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	#header{
+		display: initial;
+		#menuToggle{
+			display: initial;
+		}
+		.menu{
+			flex-direction: column;
+			align-items: center;
+			li{
+				margin: 10px;
+				width: 200px;
+			}
+		}
+		#menuToggleCheckbox:checked{//opened menu
+			+label#menuToggle{ 
+				.menuRows{
+					opacity: 0;
+				}
+				.menuCross{
+					opacity: 1;
+				}
+			}
+		}
+		#menuToggleCheckbox:not(:checked){//closed menu
+			+label#menuToggle{ 
+				.menuRows{
+					opacity: 1;
+				}
+				.menuCross{
+					opacity: 0;
+				}
+				+ul.menu{
+					height: 0;
+				}
+			}
+		}
+	}
+}

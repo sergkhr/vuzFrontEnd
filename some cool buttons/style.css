@@ -760,11 +760,7 @@ main .container .glassSection .secondCards > div .topCircle {
   left: 50%;
   transform: translateX(-50%);
 }
-main .container .glassSection .secondCards > div:hover {
-  z-index: 3;
-}
 main .container .glassSection .secondCards > div:hover ~ .background {
-  z-index: 2;
   opacity: 1;
 }
 main .container .glassSection .secondCards .card1 .topCircle {
@@ -778,18 +774,6 @@ main .container .glassSection .secondCards .card3 .topCircle {
 }
 main .container .glassSection .thirdCards {
   position: relative;
-}
-main .container .glassSection .thirdCards .background {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  background-color: #2d4040;
-  z-index: 1;
 }
 main .container .glassSection .thirdCards > div {
   width: 200px;
@@ -825,15 +809,10 @@ main .container .glassSection .thirdCards > div {
 main .container .glassSection .thirdCards > div:hover {
   border-color: transparent;
   filter: brightness(1.2);
-  z-index: 3;
 }
 main .container .glassSection .thirdCards > div:hover .cardNumber {
   opacity: 1;
   transform: translateY(0px);
-}
-main .container .glassSection .thirdCards > div:hover ~ .background {
-  z-index: 2;
-  opacity: 0.3;
 }
 main .container .glassSection .thirdCards > div .cardNumber {
   font-size: 50px;
@@ -847,6 +826,9 @@ main .container .glassSection .thirdCards > div .cardNumber {
   z-index: -1;
   transform: translateY(70px);
   transition: all 0.3s ease-in-out;
+}
+main .container .glassSection .thirdCards > div.cardHover {
+  filter: brightness(0.6);
 }
 footer {
   background-color: rgba(0, 0, 0, 0.1);

@@ -27,7 +27,22 @@
 			<ul class="menu">
 				<li><a href="#">Home</a></li>
 				<li><a href="#">About</a></li>
-				<li><a href="#">Contact</a></li>
+				<li id="accumulator">
+					<p></p>
+					<button>accumulate</button>
+				</li>
+				<li class="captcha">
+					<label for="captchaToggleCheckbox" id="captchaToggle">
+						<p>Captcha</p>
+						<input type="checkbox" id="captchaToggleCheckbox" />
+						<div id="captcha">
+							<p></p>
+							<input type="text"/>
+							<button>Submit</button>
+						</div>
+						<button type="submit" id="captchaSubmition">Submit nothing</button>
+					</label>
+				</li>
 			</div>
 		</header>
 		<main>
@@ -130,9 +145,11 @@
 
 					<div class="secondCards">
 						<div class="card card1">
+							<p>Small text</p>
 							<div class="topCircle"></div>
 						</div>
 						<div class="card card2">
+							<p>a whole lot of text her should be placed so we see dots</p>
 							<div class="topCircle"></div>
 						</div>
 						<div class="card card3">

@@ -73,8 +73,55 @@
 #header .menu li a:hover {
   color: #ff0000;
 }
+#header .menu li.captcha {
+  flex-wrap: wrap;
+  width: fit-content;
+  height: fit-content;
+  flex-direction: column;
+  min-width: 100px;
+  min-height: 50px;
+}
+#header .menu li#accumulator {
+  flex-direction: column;
+}
+#header .menu li#accumulator > p {
+  margin: 2px;
+}
 #header .menu::after {
   content: "menu end";
+}
+#header .menu #captchaToggleCheckbox {
+  display: none;
+}
+#header .menu #captchaToggleCheckbox:checked ~ #captcha {
+  height: 150px;
+}
+#header .menu #captchaToggle {
+  width: 100%;
+  color: #000000;
+  text-align: center;
+}
+#header .menu #captchaToggle > p {
+  margin: 11.5px 0;
+}
+#header .menu #captchaToggle #captcha {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: fit-content;
+  height: 0;
+  overflow: hidden;
+}
+#header .menu #captchaToggle #captcha > p {
+  text-decoration: line-through;
+}
+#header .menu #captchaToggle #captchaSubmition {
+  pointer-events: none;
+  filter: contrast(0.5);
+}
+#header .menu #captchaToggle #captchaSubmition.active {
+  pointer-events: auto;
+  filter: grayscale(1);
 }
 #header #menuToggleCheckbox {
   display: none;

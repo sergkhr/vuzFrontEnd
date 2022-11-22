@@ -46,8 +46,7 @@ function captchaUpdate(stressLevel){
 function captchaSubmition(stressLevel){
 	let captchaText = $("#captcha > p").first();
 	let captchaInput = $("#captcha > input").first();
-	//empty check using isEmpty
-	if(isEmpty(captchaInput.val())){
+	if(captchaInput.val() == ""){
 		alert("You have not entered anything");
 		return;
 	}
@@ -105,5 +104,53 @@ function truncate(str, maxlength){
 $(".secondCards").first().find(".card").each(function (){
 	let cardText = $(this).find("p").first();
 	cardText.text(truncate(cardText.text(), 15));
+});
+
+
+let basketArray = [];
+
+function BasketItem(name, price){
+	this.name = name;
+	this.price = price;
+	this.quantity = 1;
+}
+
+function addToBasket(name, price){
+	let item = basketArray.find(item => item.name === name);
+	if(item){
+		item.quantity++;
+	}else{
+		basketArray.push(new BasketItem(name, price));
+	}
+}
+
+function countBasketPrice(){
+	let totalPrice = 0;
+	basketArray.forEach(item => totalPrice += item.price * item.quantity);
+	$("#basket > p").text(totalPrice);
+}
+
+$(".product > .addProduct").click(function (){
+	//console.log("click")
+	let product = $(this).parent();
+	addToBasket(product.find("h3").text(), Number(product.find(".price").text()));
+	countBasketPrice();
+});
+
+$(".product > .removeProduct").click(function (){
+	let product = $(this).parent();
+	let item = basketArray.find(item => item.name === product.find("h3").text());
+	if(item){
+		item.quantity--;
+		if(item.quantity === 0){
+			basketArray.splice(basketArray.indexOf(item), 1);
+		}
+	}
+	countBasketPrice();
+});
+
+$("#deleteBasket").click(function (){
+	basketArray = [];
+	countBasketPrice();
 });
 

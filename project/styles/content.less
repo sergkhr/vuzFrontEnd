@@ -1,7 +1,7 @@
 @import url("vars.less");
 
 main{
-	margin-top: 100px;
+	margin-top: 150px;
 
 	.notificationsWrapper{
 		position: relative;
@@ -18,7 +18,7 @@ main{
 		border-radius: 15px;
 		overflow: hidden;
 		&::before{
-			content: "4";
+			content: attr(data-before);
 			background-color: red;
 			box-shadow: 0px 0px 0px 3px rgba(255, 0, 0, 0.535);
 			color: white;
@@ -50,6 +50,9 @@ main{
 			padding-inline-start: 0;
 			margin: 0;
 			padding: 0;
+			height: 120px;
+			overflow-y: scroll;
+			overflow-x: hidden;
 			li{
 				box-sizing: border-box;
 				padding: 5px;
@@ -74,7 +77,7 @@ main{
 				}
 				&:hover{
 					background-color: @myPurple;
-					transform: scale(1.2);
+					transform: scale(1.05);
 					box-shadow: 0px 0px 5px 0px rgb(0, 0, 0);
 					span{
 						background-color: antiquewhite;
@@ -86,9 +89,9 @@ main{
 	.notifications:hover{
 		width: 150px;
 		height: 150px;
-		animation-name: overflowDelay;
-		animation-delay: 0.3s;
-		animation-fill-mode: both;
+		// animation-name: overflowDelay;
+		// animation-delay: 0.3s;
+		// animation-fill-mode: both;
 		>div{
 			background-color: @myPurple;
 		}

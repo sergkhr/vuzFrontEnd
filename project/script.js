@@ -17,6 +17,7 @@ $(".thirdCards").first().find(".card").hover(function (){
 
 $(window).on("load", function (){
 	captchaUpdate(0);
+	notificationsUpdateTick();
 });
 
 let captchaStressLevel = 0;
@@ -154,3 +155,58 @@ $("#deleteBasket").click(function (){
 	countBasketPrice();
 });
 
+function filterArray(arr, a, b){
+	return arr.filter(item => (a <= item.price && item.price <= b));
+}
+
+
+let notificationsCount = 0;
+function notificationsUpdate(){
+	if(notificationsCount <= 10){
+		let notifications = $(".notifications").first();
+		notificationsCount++;
+		let notifidicationList = notifications.find("ul").first();
+		notifidicationList.append("<li><span>" + notificationsCount + "</span>list item " + notificationsCount + "</li>");
+		notifications.attr("data-before", notificationsCount);
+	}
+}
+
+let notificationsUpdateTickDelay = 3000;
+function notificationsUpdateTick(){
+	notificationsUpdate();
+	setTimeout(notificationsUpdateTick, notificationsUpdateTickDelay);
+}
+
+$(".notifications").first().click(function (){
+	notificationsUpdateTickDelay = 10000;
+	setTimeout(function(){notificationsUpdateTickDelay = 3000;}, 10000);
+});
+
+function productListSort(direction){
+	let productList = $(".productList").first();
+	let productListItems = productList.find(".product");
+	let productListItemsArray = [];
+	productListItems.each(function (){
+		productListItemsArray.push($(this));
+	});
+	if(direction === "up"){
+		productListItemsArray.sort(function (a, b){
+			return Number(a.find(".price").text()) - Number(b.find(".price").text());
+		});
+	}
+	if(direction === "down"){
+		productListItemsArray.sort(function (a, b){
+			return Number(b.find(".price").text()) - Number(a.find(".price").text());
+		});
+	}
+	productListItemsArray.forEach(function (item){
+		productList.append(item);
+	});
+}
+
+$(".products > .sortDirection").first().find("button.up").click(function (){
+	productListSort("up");
+});
+$(".products > .sortDirection").first().find("button.down").click(function (){
+	productListSort("down");
+});

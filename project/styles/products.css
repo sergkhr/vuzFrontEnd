@@ -1,3 +1,9 @@
+.products .sortDirection {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 15px 30px;
+}
 .products .productList {
   display: flex;
   flex-direction: column;

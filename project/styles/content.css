@@ -25,7 +25,7 @@
   }
 }
 main {
-  margin-top: 100px;
+  margin-top: 150px;
 }
 main .notificationsWrapper {
   position: relative;
@@ -42,7 +42,7 @@ main .notifications {
   overflow: hidden;
 }
 main .notifications::before {
-  content: "4";
+  content: attr(data-before);
   background-color: red;
   box-shadow: 0px 0px 0px 3px rgba(255, 0, 0, 0.535);
   color: white;
@@ -73,6 +73,9 @@ main .notifications ul {
   padding-inline-start: 0;
   margin: 0;
   padding: 0;
+  height: 120px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 main .notifications ul li {
   box-sizing: border-box;
@@ -99,7 +102,7 @@ main .notifications ul li span {
 }
 main .notifications ul li:hover {
   background-color: #da03da;
-  transform: scale(1.2);
+  transform: scale(1.05);
   box-shadow: 0px 0px 5px 0px #000000;
 }
 main .notifications ul li:hover span {
@@ -108,9 +111,6 @@ main .notifications ul li:hover span {
 main .notifications:hover {
   width: 150px;
   height: 150px;
-  animation-name: overflowDelay;
-  animation-delay: 0.3s;
-  animation-fill-mode: both;
 }
 main .notifications:hover > div {
   background-color: #da03da;

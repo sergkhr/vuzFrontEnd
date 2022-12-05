@@ -272,3 +272,11 @@ function centerPic(){
 $("#jsCenteredPicWrapper").find(".centeredPic").first().click(function(event){
 	console.log(event.pageX, event.pageY);
 });
+
+
+$(".firstCards a").click(function (event){
+	let confirmation = confirm("Are you sure you want to leave this page?");
+	if(!confirmation){
+		event.preventDefault();
+	}
+});

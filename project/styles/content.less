@@ -3,6 +3,9 @@
 main{
 	margin-top: 150px;
 
+	#notificationsAdd{
+		margin: 20px;
+	}
 	.notificationsWrapper{
 		position: relative;
 		width: fit-content;
@@ -74,6 +77,10 @@ main{
 					transition: background-color 0.3s ease-in-out;
 					background-color: @myPurple;
 					margin-right: 15px;
+					cursor: pointer;
+					transform-origin: center;
+					font-size: 24px;
+					transform: rotate(45deg);
 				}
 				&:hover{
 					background-color: @myPurple;
@@ -778,6 +785,38 @@ main{
 						filter: brightness(0.6);
 					}
 				}
+			}
+		}
+
+		#listSection{
+			background-color: aliceblue;
+			margin: 50px auto;
+			width: calc(100% - 160px);
+			>ul{
+				margin-top: 30px;
+				li{
+					font-size: 24px;
+					margin: 10px 5px;
+					border: 1px solid black;
+					border-radius: 10px;
+					padding: 10px;
+				}
+			}
+		}
+
+		#jsCenteredPicWrapper{
+			background-color: aqua;
+			margin: 50px auto;
+			width: calc(100vw - 160px);
+			height: 800px;
+			position: relative;
+			.centeredPic{
+				position: absolute;
+				background-color: chartreuse;
+				width: 60vw;
+				height: 30vw;
+				max-width: 1600px;
+				max-height: 800px;
 			}
 		}
 	}

@@ -18,7 +18,13 @@ $(".thirdCards").first().find(".card").hover(function (){
 $(window).on("load", function (){
 	captchaUpdate(0);
 	notificationsUpdateTick();
+	centerPic();
 });
+
+$(window).on("resize", function (){
+	centerPic();
+});
+
 
 let captchaStressLevel = 0;
 $("#captcha > button").first().click(() => {captchaSubmition(captchaStressLevel);});
@@ -159,14 +165,14 @@ function filterArray(arr, a, b){
 	return arr.filter(item => (a <= item.price && item.price <= b));
 }
 
-
+//work with notifications
 let notificationsCount = 0;
 function notificationsUpdate(){
 	if(notificationsCount <= 10){
 		let notifications = $(".notifications").first();
 		notificationsCount++;
 		let notifidicationList = notifications.find("ul").first();
-		notifidicationList.append("<li><span>" + notificationsCount + "</span>list item " + notificationsCount + "</li>");
+		notifidicationList.append("<li><span class=\"closer\">+</span>list item " + notificationsCount + "</li>");
 		notifications.attr("data-before", notificationsCount);
 	}
 }
@@ -177,10 +183,34 @@ function notificationsUpdateTick(){
 	setTimeout(notificationsUpdateTick, notificationsUpdateTickDelay);
 }
 
-$(".notifications").first().click(function (){
-	notificationsUpdateTickDelay = 10000;
-	setTimeout(function(){notificationsUpdateTickDelay = 3000;}, 10000);
+$(".notifications").first().click(function (event){
+	if($(event.target).hasClass("closer")){
+		$(event.target).parent().remove();
+		notificationsCount--;
+		$(this).attr("data-before", notificationsCount);
+	}
+	else{
+		notificationsUpdateTickDelay = 10000;
+		setTimeout(function(){notificationsUpdateTickDelay = 3000;}, 10000);
+	}
 });
+
+$("#notificationsAdd").click(function (){
+	let notifications = $(".notifications").first();
+	notificationsCount++;
+	let notifidicationList = notifications.find("ul").first();
+	let content = prompt("Enter notification content", "");
+	let addingItem = $("<li><span class=\"closer\">+</span>list item " + content + "</li>");
+	notifidicationList.append(addingItem);
+	notifications.attr("data-before", notificationsCount);
+	setTimeout(function(){
+		addingItem.remove();
+		notificationsCount--;
+		notifications.attr("data-before", notificationsCount);
+	}, 1500);
+});
+
+//end of work with notifications
 
 function productListSort(direction){
 	let productList = $(".productList").first();
@@ -209,4 +239,36 @@ $(".products > .sortDirection").first().find("button.up").click(function (){
 });
 $(".products > .sortDirection").first().find("button.down").click(function (){
 	productListSort("down");
+});
+
+
+$("a[href^='http']").css("color", "orange"); //makes external links orange
+
+function addListElement(){
+	let content = prompt("Enter list item content", "");
+	if(content){
+		let listItem = $("<li></li>");
+		listItem.text(content);
+		$("#listSection > ul").first().append(listItem);
+		addListElement();
+	}
+}
+
+$("#listSection > .listAdder").first().click(addListElement);
+
+function centerPic(){
+	let wrapper = $("#jsCenteredPicWrapper");
+	let pic = wrapper.find(".centeredPic").first();
+	let picWidth = pic.width();
+	let picHeight = pic.height();
+	let wrapperWidth = wrapper.width();
+	let wrapperHeight = wrapper.height();
+	let picLeft = (wrapperWidth - picWidth) / 2;
+	let picTop = (wrapperHeight - picHeight) / 2;
+	pic.css("left", picLeft);
+	pic.css("top", picTop);
+}
+
+$("#jsCenteredPicWrapper").find(".centeredPic").first().click(function(event){
+	console.log(event.pageX, event.pageY);
 });

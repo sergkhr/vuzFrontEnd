@@ -18,6 +18,10 @@
   border-radius: 15px;
   background-color: rgba(204, 204, 204, 0.761);
   margin: 15px 30px;
+  cursor: grab;
+}
+.products .productList .product > button {
+  cursor: pointer;
 }
 .products #basket {
   display: flex;

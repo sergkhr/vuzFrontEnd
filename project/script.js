@@ -113,6 +113,55 @@ $(".secondCards").first().find(".card").each(function (){
 	cardText.text(truncate(cardText.text(), 15));
 });
 
+//work with notifications
+let notificationsCount = 0;
+function notificationsUpdate(){
+	if(notificationsCount <= 10){
+		let notifications = $(".notifications").first();
+		notificationsCount++;
+		let notifidicationList = notifications.find("ul").first();
+		notifidicationList.append("<li><span class=\"closer\">+</span>list item " + notificationsCount + "</li>");
+		notifications.attr("data-before", notificationsCount);
+	}
+}
+
+let notificationsUpdateTickDelay = 3000;
+function notificationsUpdateTick(){
+	notificationsUpdate();
+	setTimeout(notificationsUpdateTick, notificationsUpdateTickDelay);
+}
+
+$(".notifications").first().click(function (event){
+	if($(event.target).hasClass("closer")){
+		$(event.target).parent().remove();
+		notificationsCount--;
+		$(this).attr("data-before", notificationsCount);
+	}
+	else{
+		notificationsUpdateTickDelay = 10000;
+		setTimeout(function(){notificationsUpdateTickDelay = 3000;}, 10000);
+	}
+});
+
+$("#notificationsAdd").click(function (){
+	let notifications = $(".notifications").first();
+	notificationsCount++;
+	let notifidicationList = notifications.find("ul").first();
+	let content = prompt("Enter notification content", "");
+	let addingItem = $("<li><span class=\"closer\">+</span>list item " + content + "</li>");
+	notifidicationList.append(addingItem);
+	notifications.attr("data-before", notificationsCount);
+	setTimeout(function(){
+		addingItem.remove();
+		notificationsCount--;
+		notifications.attr("data-before", notificationsCount);
+	}, 1500);
+});
+
+//end of work with notifications
+
+
+//work with basket
 
 let basketArray = [];
 
@@ -165,53 +214,6 @@ function filterArray(arr, a, b){
 	return arr.filter(item => (a <= item.price && item.price <= b));
 }
 
-//work with notifications
-let notificationsCount = 0;
-function notificationsUpdate(){
-	if(notificationsCount <= 10){
-		let notifications = $(".notifications").first();
-		notificationsCount++;
-		let notifidicationList = notifications.find("ul").first();
-		notifidicationList.append("<li><span class=\"closer\">+</span>list item " + notificationsCount + "</li>");
-		notifications.attr("data-before", notificationsCount);
-	}
-}
-
-let notificationsUpdateTickDelay = 3000;
-function notificationsUpdateTick(){
-	notificationsUpdate();
-	setTimeout(notificationsUpdateTick, notificationsUpdateTickDelay);
-}
-
-$(".notifications").first().click(function (event){
-	if($(event.target).hasClass("closer")){
-		$(event.target).parent().remove();
-		notificationsCount--;
-		$(this).attr("data-before", notificationsCount);
-	}
-	else{
-		notificationsUpdateTickDelay = 10000;
-		setTimeout(function(){notificationsUpdateTickDelay = 3000;}, 10000);
-	}
-});
-
-$("#notificationsAdd").click(function (){
-	let notifications = $(".notifications").first();
-	notificationsCount++;
-	let notifidicationList = notifications.find("ul").first();
-	let content = prompt("Enter notification content", "");
-	let addingItem = $("<li><span class=\"closer\">+</span>list item " + content + "</li>");
-	notifidicationList.append(addingItem);
-	notifications.attr("data-before", notificationsCount);
-	setTimeout(function(){
-		addingItem.remove();
-		notificationsCount--;
-		notifications.attr("data-before", notificationsCount);
-	}, 1500);
-});
-
-//end of work with notifications
-
 function productListSort(direction){
 	let productList = $(".productList").first();
 	let productListItems = productList.find(".product");
@@ -241,6 +243,39 @@ $(".products > .sortDirection").first().find("button.down").click(function (){
 	productListSort("down");
 });
 
+$(".product").on("selectstart", function (event){
+	event.preventDefault();
+});
+
+//add possibility to add products to #basket via drag and drop
+let draggedProduct = null;
+$(".product").on("dragstart", function (event){
+	draggedProduct = $(this);
+	console.log(draggedProduct + "dragstart");
+});
+$(".product").on("dragend", function (event){
+	draggedProduct = null;
+	console.log(draggedProduct + "dragend");
+});
+$("#basket").on("dragover", function (event){
+	event.preventDefault();
+	$(this).css("outline", "2px solid red");
+});
+$("#basket").on("dragleave", function (event){
+	$(this).css("outline", "");
+});
+$("#basket").on("drop", function (event){
+	console.log(draggedProduct + "drop");
+	$(this).css("outline", "");
+	if(draggedProduct){
+		addToBasket(draggedProduct.find("h3").text(), Number(draggedProduct.find(".price").text()));
+		countBasketPrice();
+	}
+});
+
+//end of work with basket
+
+
 
 $("a[href^='http']").css("color", "orange"); //makes external links orange
 
@@ -250,6 +285,9 @@ function addListElement(){
 		let listItem = $("<li></li>");
 		listItem.text(content);
 		$("#listSection > ul").first().append(listItem);
+		listItem.on("selectstart", function (event){
+			event.preventDefault();
+		});
 		addListElement();
 	}
 }
@@ -279,4 +317,44 @@ $(".firstCards a").click(function (event){
 	if(!confirmation){
 		event.preventDefault();
 	}
+});
+
+
+$(".gallery").click(function (event){
+	//$(".small").first().find("img").first().attr("src", $(event.target).attr("src"));//this is for images
+	$(".small").first().css("background-color", $(event.target).css("background-color")); //this is for when we just change color
+});
+
+$("#listSection").click(function (event){
+	if($(event.target).is("li")){
+		if(event.ctrlKey){
+			$(event.target).toggleClass("selected");
+		}
+		else{
+			$(event.target).addClass("selected");
+			$(event.target).siblings().removeClass("selected");
+		}
+	}
+});
+
+//when #myRange is changed create two circles with 20px radius on the current position of the slider and animate them to fade away
+$("#myRange").on("input", function (){
+	let range = $(this);
+	let rangeWidth = range.width();
+	let rangeValue = range.val();
+	let rangeValuePercent = rangeValue / range.attr("max");
+	let circle = $("<div></div>");
+	circle.addClass("circle");
+	circle.css("left", rangeValuePercent * rangeWidth - 12);
+	range.parent().append(circle);
+	//animate circle to fade away and transform to 3 times it's size
+	circle.animate({
+		opacity: 0,
+		width: "60px",
+		height: "60px",
+		marginLeft: "-20px",
+		marginTop: "-20px"
+	}, 400, function (){
+		circle.remove();
+	});
 });

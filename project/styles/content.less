@@ -800,6 +800,11 @@ main{
 					border: 1px solid black;
 					border-radius: 10px;
 					padding: 10px;
+					cursor: pointer;
+					&.selected{
+						background-color: rgb(0, 255, 183);
+						border-width: 3px;
+					}
 				}
 			}
 		}
@@ -819,6 +824,46 @@ main{
 				max-height: 800px;
 			}
 		}
+
+		.rangeWrapper{
+			position: relative;
+			#myRange{
+				-webkit-appearance: none;
+				width: 100%;
+				height: 15px;
+				margin: 30px auto;
+				border-radius: 5px;
+				background: #d3d3d3;
+				outline: none;
+				opacity: 0.7;
+				-webkit-transition: .2s;
+				transition: opacity .2s;
+				&:hover{
+					opacity: 1;
+				}
+				&::-webkit-slider-thumb{
+					-webkit-appearance: none;
+					appearance: none;
+					width: 25px;
+					height: 45px;
+					border-radius: 20%;
+					background: #009fd9;
+					cursor: pointer;
+				}
+			}
+			.circle{
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				background-color: transparent;
+				border: 2px solid rgb(0, 255, 106);
+				transform-origin: center;
+				position: absolute;
+				top: 30px;
+				z-index: -1;
+			}
+		}
+		
 	}
 }
 footer{
